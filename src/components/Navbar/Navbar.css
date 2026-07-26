@@ -1,14 +1,117 @@
 .navbar {
+
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 8px 4%;
+
+    padding: 15px 40px;
+
+    background: white;
+
+    border-bottom: 1px solid #eee;
+
 }
 
-.navbar .logo {
-    width: max(10%, 80px);
+
+.logo {
+
+    width: 120px;
+
 }
 
-.navbar .profile {
-    width: 40px;
+
+.navbar-profile {
+
+    position: relative;
+
+}
+
+
+.profile {
+
+    width: 45px;
+    height: 45px;
+
+    border-radius: 50%;
+
+    object-fit: cover;
+
+    cursor: pointer;
+
+    transition: 0.3s;
+
+}
+
+
+
+.profile:hover {
+
+    transform: scale(1.05);
+
+}
+
+
+
+
+.profile-dropdown {
+
+    position: absolute;
+
+    top: 55px;
+
+    right: 0;
+
+
+    background: white;
+
+    width: 130px;
+
+
+    border-radius: 8px;
+
+
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+
+
+    padding: 10px 0;
+
+
+    z-index: 100;
+
+
+}
+
+
+
+.profile-dropdown p {
+
+
+    margin: 0;
+
+    padding: 10px 20px;
+
+
+    font-size: 14px;
+
+    color: #333;
+
+
+    cursor: pointer;
+
+
+    transition: 0.3s;
+
+
+}
+
+
+
+.profile-dropdown p:hover {
+
+
+    background: #fff1ed;
+
+    color: tomato;
+
+
 }

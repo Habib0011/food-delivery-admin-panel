@@ -1,35 +1,115 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Navbar from './components/Navbar/Navbar';
 import SideBar from './components/SideBar/SideBar';
-import { Navigate, Route, Routes } from 'react-router-dom'
+import { Navigate, Route, Routes } from 'react-router-dom';
+
 import Add from './pages/Add/Add';
 import List from './pages/List/List';
 import Order from './pages/Order/Order';
+import AdminLogin from './pages/AdminLogin/AdminLogin';
+
+import ProtectedRoute from './components/ProtectRoute/ProtectedRoute.jsx';
+
 import { ToastContainer } from 'react-toastify';
 import "react-toastify/dist/ReactToastify.css";
+
 import { url } from './assets/assets.js';
+
+
 
 const App = () => {
 
+
+  const [token, setToken] = useState(
+    localStorage.getItem("adminToken")
+  );
+
+
   return (
-    <div>
-      <ToastContainer></ToastContainer>
-      <Navbar />
-      <hr />
+
+    <>
+
+      <ToastContainer />
+
+
+      {
+        token && <Navbar setToken={setToken} />
+      }
+
+
+
+      {
+        token && <hr />
+      }
+
+
 
       <div className="app-content">
-        <SideBar />
+
+
+        {
+          token && <SideBar />
+        }
+
+
 
         <Routes>
-          <Route path="/" element={<Navigate to="/add" replace />} />
-          <Route path='/add' element={<Add url={url} />} />
-          <Route path='/list' element={<List url={url} />} />
-          <Route path='/order' element={<Order url={url} />} />
+
+
+          <Route
+            path="/"
+            element={
+              token
+                ? <Navigate to="/add" />
+                : <AdminLogin url={url} setToken={setToken} />
+            }
+          />
+
+
+
+          <Route
+            path="/add"
+            element={
+              <ProtectedRoute>
+                <Add url={url} />
+              </ProtectedRoute>
+            }
+          />
+
+
+
+          <Route
+            path="/list"
+            element={
+              <ProtectedRoute>
+                <List url={url} />
+              </ProtectedRoute>
+            }
+          />
+
+
+
+          <Route
+            path="/order"
+            element={
+              <ProtectedRoute>
+                <Order url={url} />
+              </ProtectedRoute>
+            }
+          />
+
+
         </Routes>
 
+
       </div>
-    </div>
+
+
+    </>
+
   );
+
 };
+
 
 export default App;
