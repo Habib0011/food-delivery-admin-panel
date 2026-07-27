@@ -2,59 +2,34 @@ import React, { useState } from 'react';
 import Navbar from './components/Navbar/Navbar';
 import SideBar from './components/SideBar/SideBar';
 import { Navigate, Route, Routes } from 'react-router-dom';
-
 import Add from './pages/Add/Add';
 import List from './pages/List/List';
 import Order from './pages/Order/Order';
 import AdminLogin from './pages/AdminLogin/AdminLogin';
-
-import ProtectedRoute from './components/ProtectRoute/ProtectedRoute.jsx';
-
+import ProtectedRoute from './components/ProtectRoute/ProtectRoute.jsx';
 import { ToastContainer } from 'react-toastify';
 import "react-toastify/dist/ReactToastify.css";
-
 import { url } from './assets/assets.js';
 
-
-
 const App = () => {
-
 
   const [token, setToken] = useState(
     localStorage.getItem("adminToken")
   );
 
-
   return (
-
     <>
-
       <ToastContainer />
 
+      {token && <Navbar setToken={setToken} />}
 
-      {
-        token && <Navbar setToken={setToken} />
-      }
-
-
-
-      {
-        token && <hr />
-      }
-
-
+      {token && <hr />}
 
       <div className="app-content">
 
-
-        {
-          token && <SideBar />
-        }
-
-
+        {token && <SideBar />}
 
         <Routes>
-
 
           <Route
             path="/"
@@ -65,8 +40,6 @@ const App = () => {
             }
           />
 
-
-
           <Route
             path="/add"
             element={
@@ -75,8 +48,6 @@ const App = () => {
               </ProtectedRoute>
             }
           />
-
-
 
           <Route
             path="/list"
@@ -87,8 +58,6 @@ const App = () => {
             }
           />
 
-
-
           <Route
             path="/order"
             element={
@@ -98,18 +67,11 @@ const App = () => {
             }
           />
 
-
         </Routes>
 
-
       </div>
-
-
     </>
-
   );
-
 };
-
 
 export default App;
