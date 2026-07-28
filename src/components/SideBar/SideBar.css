@@ -25,13 +25,45 @@
     cursor: pointer;
 }
 
+.sidebar-option img {
+    width: 25px;
+}
+
 .sidebar-option.active {
     background-color: #fff0ed;
     border-color: tomato;
 }
 
 @media (max-width:900px) {
+
+    .sidebar {
+        width: 90px;
+    }
+
+    .sidebar-options {
+        padding-top: 30px;
+        padding-left: 0;
+        align-items: center;
+        gap: 15px;
+    }
+
+    .sidebar-option {
+        flex-direction: column;
+        justify-content: center;
+        gap: 4px;
+        padding: 8px 5px;
+        text-align: center;
+    }
+
+    .sidebar-option img {
+        width: 35px;
+        height: 35px;
+    }
+
     .sidebar-option p {
-        display: none;
+        display: block;
+        font-size: 11px;
+        margin: 0;
+        line-height: 12px;
     }
 }

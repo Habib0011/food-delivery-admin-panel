@@ -84,7 +84,7 @@
 
 @media(max-width:500px) {
     .admin-login-container {
-        width: 90%;
+        width: 60%;
         padding: 25px;
     }
 }
